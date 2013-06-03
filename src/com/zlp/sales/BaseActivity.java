@@ -2,6 +2,7 @@ package com.zlp.sales;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.actionbarsherlock.view.MenuItem;
 import com.slidingmenu.lib.SlidingMenu;
@@ -37,7 +38,16 @@ public class BaseActivity extends SlidingFragmentActivity {
 		case android.R.id.home:
 			toggle();
 			return true;
+		case R.id.accounts:
+			Toast.makeText(BaseActivity.this, "结算", Toast.LENGTH_SHORT).show();
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+	// @Override
+	// public boolean onCreateOptionsMenu(Menu menu) {
+	// getSupportMenuInflater().inflate(R.menu.main, menu);
+	// return true;
+	// }
 }

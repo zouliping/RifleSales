@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:orientation="vertical" >
+
+    <!-- 商品名字 -->
+
+    <TextView
+        android:id="@+id/display_production_tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textIsSelectable="false"
+        android:textSize="20sp" />
+
+    <!-- 商品图片 -->
+
+    <ImageView
+        android:id="@+id/display_production_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:contentDescription="@string/img_desc" />
+
+    <!-- 商品描述 -->
+
+    <TextView
+        android:id="@+id/display_production_tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textIsSelectable="false"
+        android:textSize="15sp" />
+
+    <!-- 商品数量改变 -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/display_production_btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/count_add" />
+
+        <EditText
+            android:id="@+id/display_production_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:ems="6"
+            android:inputType="number"
+            android:minWidth="6dp" />
+
+        <Button
+            android:id="@+id/display_production_btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/count_sub" />
+    </LinearLayout>
+
+    <!-- 发送到服务端 -->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" >
+
+        <Button
+            android:id="@+id/display_production_btn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="@string/send_to_server" />
+    </RelativeLayout>
+
+</LinearLayout>

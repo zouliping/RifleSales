@@ -26,12 +26,12 @@ public class MainActivity extends BaseActivity {
 			mContent = new SendDataFragment();
 		}
 
-		// …Ë÷√above view
+		// above view
 		setContentView(R.layout.content_frame);
 		manager.beginTransaction().replace(R.id.content_frame, mContent)
 				.commit();
 
-		// …Ë÷√behind view
+		// behind view
 		setBehindContentView(R.layout.menu_frame);
 		manager.beginTransaction()
 				.replace(R.id.menu_frame, new BehindMenuFragment()).commit();
@@ -46,7 +46,7 @@ public class MainActivity extends BaseActivity {
 	}
 
 	/**
-	 * «–ªªfragment
+	 * ÂàáÊç¢fragment
 	 * 
 	 * @param fragment
 	 */

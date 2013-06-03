@@ -2,9 +2,15 @@
 <resources>
 
     <string name="app_name">Sales</string>
-    <string name="send_sale_data">发送数据</string>
+    <string name="send_sale_data">结算</string>
     <string name="check_now">查看当月记录</string>
     <string name="check_history">查看历史记录</string>
     <string name="about">关于</string>
+    <string name="production_desc">production_desc</string>
+    <string name="accounts">结算</string>
+    <string name="img_desc">Rifle components</string>
+    <string name="count_add"> ↑ </string>
+    <string name="count_sub"> ↓ </string>
+    <string name="send_to_server">发送销售数据</string>
 
 </resources>
