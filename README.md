@@ -1,4 +1,4 @@
-RifleSales-
+RifleSales
 ===========
 
 RifleSales for Android
