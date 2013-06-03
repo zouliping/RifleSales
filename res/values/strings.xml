@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Sales</string>
+    <string name="send_sale_data">发送数据</string>
+    <string name="check_now">查看当月记录</string>
+    <string name="check_history">查看历史记录</string>
+    <string name="about">关于</string>
+
+</resources>
