@@ -1,0 +1,4 @@
+RifleSales-
+===========
+
+RifleSales for Android
