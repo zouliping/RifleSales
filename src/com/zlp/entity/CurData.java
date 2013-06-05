@@ -6,6 +6,9 @@ public class CurData {
 	private String pname;
 	private String count;
 
+	public CurData() {
+	}
+
 	public CurData(String location, String pname, String count) {
 		this.location = location;
 		this.pname = pname;
