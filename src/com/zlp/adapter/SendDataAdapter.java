@@ -2,9 +2,6 @@ package com.zlp.adapter;
 
 import java.util.ArrayList;
 
-import com.zlp.entity.Production;
-import com.zlp.sales.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.zlp.entity.Production;
+import com.zlp.sales.R;
 
 /**
  * 商品信息的adapter
@@ -73,10 +72,21 @@ public class SendDataAdapter extends BaseAdapter {
 		holder.tv_name.setText(tmp.getName());
 		holder.tv_desc.setText(tmp.getDesc());
 		holder.iv_add.setOnClickListener(new OnClickListener() {
-
 			@Override
-			public void onClick(View arg0) {
-				Toast.makeText(mContext, "send", Toast.LENGTH_SHORT).show();
+			public void onClick(View v) {
+				// try {
+				// if (Integer.parseInt(Utils
+				// .sendData2Server(AppKeys.SEND_SALES_DATA_URL)) != -1) {
+				// Toast.makeText(mContext, "发送成功", Toast.LENGTH_SHORT)
+				// .show();
+				// } else {
+				// Toast.makeText(mContext, "发送失败", Toast.LENGTH_SHORT)
+				// .show();
+				// }
+				// } catch (Exception e) {
+				// e.printStackTrace();
+				// Toast.makeText(mContext, "发送失败", Toast.LENGTH_SHORT).show();
+				// }
 			}
 		});
 		return convertView;

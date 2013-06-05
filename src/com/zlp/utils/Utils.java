@@ -1,5 +1,10 @@
 package com.zlp.utils;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DecimalFormat;
 
 import android.app.Activity;
@@ -38,5 +43,35 @@ public class Utils {
 	public static String myFormat(Double tmp) {
 		DecimalFormat format = new DecimalFormat("#0.0");
 		return format.format(tmp);
+	}
+
+	/**
+	 * 向服务器发送数据
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public static String sendData2Server(String key) {
+		String result = null;
+		try {
+			URL url = new URL(key);
+			HttpURLConnection connection = (HttpURLConnection) url
+					.openConnection();
+
+			connection.connect();
+
+			if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+				InputStream is = connection.getInputStream();
+				byte[] buf = new byte[2048];
+				int count = is.read(buf, 0, buf.length);
+				result = new String(buf, 0, count);
+				return result;
+			}
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

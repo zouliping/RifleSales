@@ -33,6 +33,7 @@ public class DisplayProductionActivity extends Activity {
 	private ImageView iv_pic;
 	private Button btn_add;
 	private Button btn_sub;
+	private Button btn_send;
 	private EditText et_count;
 
 	@Override
@@ -71,8 +72,10 @@ public class DisplayProductionActivity extends Activity {
 
 		btn_add = (Button) findViewById(R.id.display_production_btn3);
 		btn_sub = (Button) findViewById(R.id.display_production_btn2);
+		btn_send = (Button) findViewById(R.id.display_production_btn4);
 		btn_add.setOnClickListener(listener);
 		btn_sub.setOnClickListener(listener);
+		btn_send.setOnClickListener(listener);
 		btn_sub.setEnabled(false);
 
 		tv_name.setText(pname);
@@ -94,7 +97,19 @@ public class DisplayProductionActivity extends Activity {
 				et_count.setText(pcount + "");
 				break;
 			case R.id.display_production_btn4:
-
+				// try {
+				// if (Integer.parseInt(Utils
+				// .sendData2Server(AppKeys.SEND_SALES_DATA_URL)) != -1) {
+				// Toast.makeText(mContext, "发送成功", Toast.LENGTH_SHORT)
+				// .show();
+				// } else {
+				// Toast.makeText(mContext, "发送失败", Toast.LENGTH_SHORT)
+				// .show();
+				// }
+				// } catch (Exception e) {
+				// e.printStackTrace();
+				// Toast.makeText(mContext, "发送失败", Toast.LENGTH_SHORT).show();
+				// }
 				break;
 			default:
 				break;
