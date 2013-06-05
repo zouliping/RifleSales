@@ -11,10 +11,12 @@
     <string name="img_desc">Rifle components</string>
     <string name="count_add"> ↑ </string>
     <string name="count_sub"> ↓ </string>
+    <string name="default_count">1</string>
     <string name="send_to_server">发送销售数据</string>
     <string name="uname">账号</string>
     <string name="upwd">密码</string>
     <string name="login_text">登录</string>
     <string name="rights_text">All Rights Reserved ©zouliping</string>
+    <string name="location">城市</string>
 
 </resources>

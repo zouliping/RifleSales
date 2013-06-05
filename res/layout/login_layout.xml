@@ -10,6 +10,26 @@
         android:layout_centerInParent="true"
         android:orientation="vertical" >
 
+        <!-- 头像 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/img_desc"
+                android:gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/zlp" />
+        </LinearLayout>
+
         <!-- 用户名 -->
 
         <LinearLayout
@@ -90,6 +110,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
             android:text="@string/rights_text" />
     </LinearLayout>
 

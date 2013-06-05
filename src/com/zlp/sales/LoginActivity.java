@@ -1,29 +1,17 @@
 package com.zlp.sales;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.zlp.utils.AppKeys;
 import com.zlp.utils.Utils;
 
 /**
@@ -115,45 +103,53 @@ public class LoginActivity extends Activity {
 
 		@Override
 		protected String doInBackground(String... params) {
-			try {
-				URL url = new URL(AppKeys.LOGIN_URL);
-				HttpURLConnection connection = (HttpURLConnection) url
-						.openConnection();
-				connection.setRequestMethod("POST");
-				connection.setRequestProperty("content-type", "text/html");
-				connection.setDoOutput(true);
-
-				JSONArray array = new JSONArray();
-				JSONObject jo = new JSONObject();
-
-				jo.put("uname", uname);
-				jo.put("upwd", upwd);
-
-				array.put(jo);
-
-				OutputStream os = connection.getOutputStream();
-				os.write(array.toString().getBytes("utf-8"));
-
-				if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-					InputStream is = connection.getInputStream();
-					byte[] buf = new byte[2048];
-					int count = is.read(buf, 0, buf.length);
-					result = new String(buf, 0, count);
-				}
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
+			// try {
+			// URL url = new URL(AppKeys.LOGIN_URL);
+			// HttpURLConnection connection = (HttpURLConnection) url
+			// .openConnection();
+			// connection.setRequestMethod("POST");
+			// connection.setRequestProperty("content-type", "text/html");
+			// connection.setDoOutput(true);
+			//
+			// JSONArray array = new JSONArray();
+			// JSONObject jo = new JSONObject();
+			//
+			// jo.put("uname", uname);
+			// jo.put("upwd", upwd);
+			//
+			// array.put(jo);
+			//
+			// OutputStream os = connection.getOutputStream();
+			// os.write(array.toString().getBytes("utf-8"));
+			//
+			// if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+			// InputStream is = connection.getInputStream();
+			// byte[] buf = new byte[2048];
+			// int count = is.read(buf, 0, buf.length);
+			// LoginActivity.this.result = new String(buf, 0, count);
+			// }
+			LoginActivity.this.result = "2";
+			// } catch (MalformedURLException e) {
+			// e.printStackTrace();
+			// } catch (IOException e) {
+			// e.printStackTrace();
+			// } catch (JSONException e) {
+			// e.printStackTrace();
+			// }
 			return null;
 		}
 
 		@Override
 		protected void onPostExecute(String result) {
 			dlg.dismiss();
-			
+			if (Integer.parseInt(LoginActivity.this.result) == -1) {
+				Toast.makeText(mContext, "登录失败！请重试", Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(mContext, "恭喜，登录成功!", Toast.LENGTH_SHORT).show();
+				LoginActivity.this.finish();
+				Intent intent = new Intent(mContext, MainActivity.class);
+				startActivity(intent);
+			}
 		}
 	}
 }
