@@ -17,6 +17,7 @@
     </ListView>
 
     <RelativeLayout
+        android:id="@+id/commission"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" >
@@ -28,7 +29,17 @@
             android:layout_alignParentRight="true"
             android:layout_marginBottom="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
             android:text="@string/accounts" />
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/commission"
+        android:layout_alignParentLeft="true"
+        android:text="@string/danger"
+        android:textColor="#eb483b"
+        android:textSize="21sp" />
 
 </RelativeLayout>

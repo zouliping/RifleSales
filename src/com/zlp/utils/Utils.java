@@ -46,7 +46,7 @@ public class Utils {
 	}
 
 	/**
-	 * 向服务器发送数据
+	 * 向服务器发送数据(发起get请求)
 	 * 
 	 * @param key
 	 * @return
@@ -57,6 +57,9 @@ public class Utils {
 			URL url = new URL(key);
 			HttpURLConnection connection = (HttpURLConnection) url
 					.openConnection();
+			connection.setDoInput(true);
+			connection.setDoInput(true);
+			connection.setRequestMethod("GET");
 
 			connection.connect();
 
@@ -67,6 +70,8 @@ public class Utils {
 				result = new String(buf, 0, count);
 				return result;
 			}
+
+			connection.disconnect();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

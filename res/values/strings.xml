@@ -19,5 +19,6 @@
     <string name="rights_text">All Rights Reserved ©zouliping</string>
     <string name="location">Location</string>
     <string name="logout">Logout</string>
+    <string name="danger">Danger Zone</string>
 
 </resources>

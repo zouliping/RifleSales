@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -105,11 +106,9 @@ public class LoginActivity extends Activity {
 
 		@Override
 		protected String doInBackground(String... params) {
-			// LoginActivity.this.result =
-			// Utils.sendData2Server(AppKeys.LOGIN_URL
-			// .replace("$uname", uname) + upwd);
-			// Log.e("login re", result);
-			LoginActivity.this.result = "2";
+			LoginActivity.this.result = Utils.sendData2Server(AppKeys.LOGIN_URL
+					.replace("$uname", uname) + upwd);
+			Log.e("login re", result);
 			return null;
 		}
 
@@ -121,7 +120,8 @@ public class LoginActivity extends Activity {
 						Toast.LENGTH_SHORT).show();
 			} else {
 				AppKeys.uname = uname;
-				Toast.makeText(mContext, "Login successfully", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, "Login successfully",
+						Toast.LENGTH_SHORT).show();
 				LoginActivity.this.finish();
 				Intent intent = new Intent(mContext, MainActivity.class);
 				startActivity(intent);

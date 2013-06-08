@@ -1,8 +1,10 @@
 package com.zlp.sales;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -42,6 +44,9 @@ public class DisplayProductionActivity extends Activity {
 	private EditText et_count;
 	private EditText et_location;
 
+	private Boolean canSale = true;
+	private String result = null;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,6 +66,7 @@ public class DisplayProductionActivity extends Activity {
 		resId = intent.getIntExtra("production_view", 0);
 		pname = intent.getStringExtra("production_name");
 		pdesc = intent.getStringExtra("production_desc");
+		canSale = intent.getBooleanExtra("can_sale", true);
 		Log.d("get data", resId + pname + pdesc);
 	}
 
@@ -88,6 +94,10 @@ public class DisplayProductionActivity extends Activity {
 		tv_name.setText(pname);
 		tv_desc.setText(pdesc);
 		iv_pic.setImageResource(resId);
+
+		if (canSale == false) {
+			btn_send.setEnabled(false);
+		}
 	}
 
 	private OnClickListener listener = new OnClickListener() {
@@ -104,26 +114,7 @@ public class DisplayProductionActivity extends Activity {
 				et_count.setText(pcount + "");
 				break;
 			case R.id.display_production_btn4:
-
-				try {
-					if (Integer.parseInt(Utils
-							.sendData2Server(AppKeys.SEND_SALES_DATA_URL
-									.replace("$uname", AppKeys.uname)
-									.replace("$location",
-											et_location.getText().toString())
-									.replace("$count", pcount + "")
-									+ pname)) == 1) {
-						Toast.makeText(mContext, "success", Toast.LENGTH_SHORT)
-								.show();
-					} else {
-						Toast.makeText(mContext, "failure", Toast.LENGTH_SHORT)
-								.show();
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-					Toast.makeText(mContext, "failure", Toast.LENGTH_SHORT).show();
-				}
-
+				new SenDataTask().execute();
 				break;
 			default:
 				break;
@@ -199,4 +190,58 @@ public class DisplayProductionActivity extends Activity {
 		}
 	}
 
+	/**
+	 * 修改可卖的数量
+	 */
+	private void changeNum() {
+		if (AppKeys.stock.equals(pname)) {
+			AppKeys.stockNum -= pcount;
+		} else if (AppKeys.lock.equals(pname)) {
+			AppKeys.lockNum -= pcount;
+		} else if (AppKeys.barrel.equals(pname)) {
+			AppKeys.barrelNum -= pcount;
+		}
+	}
+
+	private class SenDataTask extends AsyncTask<String, Integer, String> {
+
+		ProgressDialog dlg;
+
+		@Override
+		protected void onPreExecute() {
+			dlg = new ProgressDialog(mContext);
+			dlg.setTitle("Send Data");
+			dlg.setMessage("please wait for a monent...");
+			dlg.setCancelable(false);
+			dlg.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			dlg.show();
+
+		}
+
+		@Override
+		protected String doInBackground(String... params) {
+			DisplayProductionActivity.this.result = Utils
+					.sendData2Server(AppKeys.SEND_SALES_DATA_URL
+							.replace("$uname", AppKeys.uname)
+							.replace("$location",
+									et_location.getText().toString())
+							.replace("$count", pcount + "")
+							+ pname);
+			Log.e("send re", result);
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			dlg.dismiss();
+			if ("1".equals(DisplayProductionActivity.this.result)) {
+				Toast.makeText(mContext, "send success", Toast.LENGTH_SHORT)
+						.show();
+				changeNum();
+				DisplayProductionActivity.this.finish();
+			} else {
+				Toast.makeText(mContext, "failure", Toast.LENGTH_SHORT).show();
+			}
+		}
+	}
 }
