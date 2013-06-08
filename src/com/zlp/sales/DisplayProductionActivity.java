@@ -1,6 +1,7 @@
 package com.zlp.sales;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,7 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.zlp.utils.AppKeys;
 import com.zlp.utils.Utils;
 
 /**
@@ -22,6 +25,8 @@ import com.zlp.utils.Utils;
  * 
  */
 public class DisplayProductionActivity extends Activity {
+
+	private Context mContext = DisplayProductionActivity.this;
 
 	private int resId = 0;
 	private int pcount = 1;
@@ -35,6 +40,7 @@ public class DisplayProductionActivity extends Activity {
 	private Button btn_sub;
 	private Button btn_send;
 	private EditText et_count;
+	private EditText et_location;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +75,7 @@ public class DisplayProductionActivity extends Activity {
 		et_count = (EditText) findViewById(R.id.display_production_et2);
 		et_count.addTextChangedListener(watcher);
 		et_count.setText(pcount + "");
+		et_location = (EditText) findViewById(R.id.display_production_et1);
 
 		btn_add = (Button) findViewById(R.id.display_production_btn3);
 		btn_sub = (Button) findViewById(R.id.display_production_btn2);
@@ -97,19 +104,26 @@ public class DisplayProductionActivity extends Activity {
 				et_count.setText(pcount + "");
 				break;
 			case R.id.display_production_btn4:
-				// try {
-				// if (Integer.parseInt(Utils
-				// .sendData2Server(AppKeys.SEND_SALES_DATA_URL)) != -1) {
-				// Toast.makeText(mContext, "发送成功", Toast.LENGTH_SHORT)
-				// .show();
-				// } else {
-				// Toast.makeText(mContext, "发送失败", Toast.LENGTH_SHORT)
-				// .show();
-				// }
-				// } catch (Exception e) {
-				// e.printStackTrace();
-				// Toast.makeText(mContext, "发送失败", Toast.LENGTH_SHORT).show();
-				// }
+
+				try {
+					if (Integer.parseInt(Utils
+							.sendData2Server(AppKeys.SEND_SALES_DATA_URL
+									.replace("$uname", AppKeys.uname)
+									.replace("$location",
+											et_location.getText().toString())
+									.replace("$count", pcount + "")
+									+ pname)) == 1) {
+						Toast.makeText(mContext, "success", Toast.LENGTH_SHORT)
+								.show();
+					} else {
+						Toast.makeText(mContext, "failure", Toast.LENGTH_SHORT)
+								.show();
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					Toast.makeText(mContext, "failure", Toast.LENGTH_SHORT).show();
+				}
+
 				break;
 			default:
 				break;

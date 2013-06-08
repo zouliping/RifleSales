@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.zlp.utils.AppKeys;
 import com.zlp.utils.Utils;
 
 /**
@@ -76,7 +77,8 @@ public class LoginActivity extends Activity {
 		upwd = et_pwd.getText().toString();
 
 		if (("".equals(uname)) || ("".equals(upwd))) {
-			Toast.makeText(mContext, "账户或密码不能为空", Toast.LENGTH_SHORT).show();
+			Toast.makeText(mContext, "username or password can not be null",
+					Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -93,8 +95,8 @@ public class LoginActivity extends Activity {
 		@Override
 		protected void onPreExecute() {
 			dlg = new ProgressDialog(mContext);
-			dlg.setTitle("登录");
-			dlg.setMessage("正在登录，请稍后...");
+			dlg.setTitle("Login");
+			dlg.setMessage("please wait for a monent...");
 			dlg.setCancelable(false);
 			dlg.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 			dlg.show();
@@ -104,7 +106,9 @@ public class LoginActivity extends Activity {
 		@Override
 		protected String doInBackground(String... params) {
 			// LoginActivity.this.result =
-			// Utils.sendData2Server(AppKeys.LOGIN_URL);
+			// Utils.sendData2Server(AppKeys.LOGIN_URL
+			// .replace("$uname", uname) + upwd);
+			// Log.e("login re", result);
 			LoginActivity.this.result = "2";
 			return null;
 		}
@@ -112,10 +116,12 @@ public class LoginActivity extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 			dlg.dismiss();
-			if (Integer.parseInt(LoginActivity.this.result) == -1) {
-				Toast.makeText(mContext, "登录失败！请重试", Toast.LENGTH_SHORT).show();
+			if ("-1".equals(LoginActivity.this.result)) {
+				Toast.makeText(mContext, "Login failed! Please try again",
+						Toast.LENGTH_SHORT).show();
 			} else {
-				Toast.makeText(mContext, "恭喜，登录成功!", Toast.LENGTH_SHORT).show();
+				AppKeys.uname = uname;
+				Toast.makeText(mContext, "Login successfully", Toast.LENGTH_SHORT).show();
 				LoginActivity.this.finish();
 				Intent intent = new Intent(mContext, MainActivity.class);
 				startActivity(intent);

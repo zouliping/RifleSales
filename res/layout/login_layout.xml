@@ -27,7 +27,7 @@
                 android:contentDescription="@string/img_desc"
                 android:gravity="center"
                 android:scaleType="fitXY"
-                android:src="@drawable/zlp" />
+                android:src="@drawable/rifle" />
         </LinearLayout>
 
         <!-- 用户名 -->

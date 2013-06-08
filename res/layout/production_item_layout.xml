@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/production_item_iv1"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="15dp"
         android:contentDescription="@string/production_desc"
@@ -38,7 +38,8 @@
             android:textSize="18sp" />
     </LinearLayout>
 
-    <ImageView
+    <!--
+         <ImageView
         android:id="@+id/production_item_iv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,5 +47,6 @@
         android:layout_marginRight="15dp"
         android:contentDescription="@string/production_desc"
         android:src="@drawable/ic_launcher" />
+    -->
 
 </RelativeLayout>
