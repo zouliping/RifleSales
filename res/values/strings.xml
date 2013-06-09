@@ -20,5 +20,8 @@
     <string name="location">Location</string>
     <string name="logout">Logout</string>
     <string name="danger">Danger Zone</string>
+    <string name="lock">Lock is the part that hits the primer or firing pin or explodes the percussion cap and causes the gun to fire.</string>
+    <string name="stock">Stock is a component of the general rifle whose benefits cannot be overestimated.</string>
+    <string name="barrel">Barrel is one of the main component parts of firearms and usually made of heat-resisting, uneasily-deformed metal tube.</string>
 
 </resources>

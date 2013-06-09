@@ -1,5 +1,6 @@
 package com.zlp.utils;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -78,5 +79,16 @@ public class Utils {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	/**
+	 * 将String转换为InputStream
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static InputStream str2InputStream(String str) {
+		ByteArrayInputStream stream = new ByteArrayInputStream(str.getBytes());
+		return stream;
 	}
 }
